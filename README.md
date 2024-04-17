@@ -1,23 +1,21 @@
-# 자기소개 웹페이지
-자세한 기능 설명 및 과정은 <a href="https://velog.io/@hye_rin/%EB%82%98%EB%A7%8C%EC%9D%98-%EC%9E%90%EA%B8%B0%EC%86%8C%EA%B0%9C-%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80">블로그 포스팅</a>으로 남겨두었습니다. 위 카드를 클릭하시면 해당 글로 이동합니다.
+# 팀소개 웹페이지
 
 <br /><br />
 
 ## 🍦 소개
 
-아래의 5가지 JavaScript 기능이 있는 [자기소개 웹페이지](https://hyerrin.github.io/portfolio/)입니다.
+아래의 5가지 JavaScript 기능이 있는 [자기소개 웹페이지](https://)입니다.
 
 1. 상단 이동 스크롤 버튼
 2. 타이핑 효과
 3. 이미지 슬라이드
-4. 모달창
-5. 진행바 (Progress bar)
+4. 응원글(방명록 남기기)
 
 <br /><br />
 
 ## 💄 UI 디자인
 
-### <a href="https://www.figma.com/file/7Aap4Wapt5bkLHRZtf0vzh/Untitled?node-id=0%3A1"># figma</a>
+### <a href="https://www.figma.com/file/MojL8MTbvNDYMHp6WHs2ta/Untitled?type=design&node-id=169-7&mode=design"># figma</a>
 
 ![](https://velog.velcdn.com/images/hye_rin/post/0985d225-a4ec-4d56-89f6-b180a0ee53ad/image.png)
 
