@@ -4,7 +4,7 @@
 
 ## 🍦 소개
 
-아래의 5가지 JavaScript 기능이 있는 [자기소개 웹페이지](https://)입니다.
+아래의 5가지 JavaScript 기능이 있는 [자기소개 웹페이지](https://hyungs0703.github.io/Project/)입니다.
 
 1. 상단 이동 스크롤 버튼
 2. 타이핑 효과

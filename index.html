@@ -45,14 +45,14 @@
 
 
       let doc = { 'nickname': nickname, 'content': content };
-      await addDoc(collection(db, "albums"), doc);
+      await addDoc(collection(db, "guest"), doc);
 
 
       alert('기록 완료📕');
       window.location.reload();//새로고침을 함.
     })
 
-    let docs = await getDocs(collection(db, "albums"));
+    let docs = await getDocs(collection(db, "guest"));
     docs.forEach((doc) => {
       let row = doc.data();
       let nickname = row['nickname'];
