@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FOOD&JOB</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="style/reset.css" />
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="icon" type="image/png" sizes="16x16" href="src/img/favicon.jpg" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script type="module">
+
+    // Firebase SDK 라이브러리 가져오기
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+
+    // Firebase 구성 정보 설정
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDlLW8F98ZtHFhlM5svq_bbz47nD5vffO8",
+      authDomain: "sparta-3871e.firebaseapp.com",
+      projectId: "sparta-3871e",
+      storageBucket: "sparta-3871e.appspot.com",
+      messagingSenderId: "1099070416676",
+      appId: "1:1099070416676:web:035d1eeefe1a3b220e75b1",
+      measurementId: "G-RYZM323F1E"
+    };
+
+    // Firebase 인스턴스 초기화
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+
+    $("#postingbtn").click(async function () {
+      let nickname = $('#nickname').val();
+      let content = $('#content').val();
+
+
+      let doc = { 'nickname': nickname, 'content': content };
+      await addDoc(collection(db, "albums"), doc);
+
+
+      alert('기록 완료📕');
+      window.location.reload();//새로고침을 함.
+    })
+
+    let docs = await getDocs(collection(db, "albums"));
+    docs.forEach((doc) => {
+      let row = doc.data();
+      let nickname = row['nickname'];
+      let content = row['content'];
+      //카드를 만들어야 겟지
+      let html_temp = `<tr>
+                <td style="width: 800px; text-align: left;"><span style="color: gray;">${nickname}</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${content}</td>
+              </tr>`;
+
+      $('#contents').append(html_temp);
+
+    });
+
+    $("#savebtn").click(async function () {
+      $('#postingbox').toggle();//껏다 킴
+    })
+  </script>
+
+</head>
+
+<body>
+  <main id="app">
+    <section class="section-intro">
+      <header id="header">
+        <h1>First JS</h1>
+        <div class="bar-bg">
+          <span class="bar-ing"></span>
+        </div>
+      </header>
+
+      <div class="cont-intro">
+        <a name="info"></a>
+        <img src="src/img/르탄이.png" alt="프로필 이미지" />
+        <div>
+          <p class="txt-title"></p>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section-about">
+      <a name="about"></a>
+      <h2>Team Members</h2>
+      <div class="cont-about">
+        <div class="mycards">
+          <div id="card" class="row row-cols-1 row-cols-md-5 g-5">
+            <div class="col">
+              <p class="txt-title2">김형석</p>
+              <a href="#section1">
+                <div class="card h-100">
+                  <img src="src/img/이미지.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">다짐 한마디: Test Test Test Test Test🎈</h5>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col">
+              <p class="txt-title2">김혜은</p>
+              <a href="#section2">
+                <div class="card h-100">
+                  <img src="src/img/이미지.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">다짐 한마디: Test Test Test Test Test🎈</h5>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col">
+              <p class="txt-title2">김예찬</p>
+              <a href="#section3">
+                <div class="card h-100">
+                  <img src="src/img/kyc/1.JPG" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">다짐 한마디: 사진찍는 개발자가 되어보자!🎈</h5>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col">
+              <p class="txt-title2">신동하</p>
+              <a href="#section4">
+                <div class="card h-100">
+                  <img src="src/img/me.png" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">다짐 한마디: 기초가 있는 주니어 개발자가 되자!🎈</h5>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col">
+              <p class="txt-title2">정연주</p>
+              <a href="#section5">
+                <div class="card h-100">
+                  <img src="src/img/이미지.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">다짐 한마디: Test Test Test Test Test🎈</h5>
+
+
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="section-project">
+      <a name="project"></a>
+      <h2 id="section1">Introduce</h2>
+
+      <article class="box-project">
+        <div class="slide-container">
+          <div class="slide-album">
+            <div class="slide-images">
+              <img src="src/img/500500.jpg" alt="내 사진" />
+              <img src="src/img/500500.jpg" alt="내 사진" />
+              <img src="src/img/500500.jpg" alt="내 사진" />
+            </div>
+            <button class="btn-next">▶</button>
+            <button class="btn-prev">◀</button>
+          </div>
+        </div>
+        <div class="txt-project">
+          <h3>김형석</h3>
+          <dl>
+            <dt>나이</dt>
+            <dd></dd>
+            <dt>사는 곳</dt>
+            <dd></dd>
+            <dt>Tel.</dt>
+            <dd></dd>
+            <dt>Github</dt>
+            <dd></dd>
+            <dt>Blog</dt>
+            <dd id="section2"></dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="box-project" id="section2">
+        <div class="slide-container1">
+          <div class="slide-album1">
+            <div class="slide-images1">
+              <img src="src/img/500500.jpg" alt="내 사진" />
+              <img src="src/img/500500.jpg" alt="내 사진" />
+              <img src="src/img/500500.jpg" alt="내 사진" />
+            </div>
+            <button class="btn-next1">▶</button>
+            <button class="btn-prev1">◀</button>
+          </div>
+        </div>
+        <div class="txt-project">
+          <h3>김혜은</h3>
+          <dl>
+            <dt>나이</dt>
+            <dd></dd>
+            <dt>사는 곳</dt>
+            <dd></dd>
+            <dt>Tel.</dt>
+            <dd></dd>
+            <dt>Github</dt>
+            <dd></dd>
+            <dt>Blog</dt>
+            <dd id="section3"></dd>
+          </dl>
+        </div>
+      </article>
+      <article class="box-project">
+        <div class="slide-container3">
+          <div class="slide-album3">
+            <div class="slide-images3">
+              <img src="src/img/kyc/2.JPG" alt="내 사진" />
+              <img src="src/img/kyc/3.JPG" alt="내 사진" />
+              <img src="src/img/kyc/4.jpg" alt="내 사진" />
+            </div>
+            <button class="btn-next3">▶</button>
+            <button class="btn-prev3">◀</button>
+          </div>
+        </div>
+        <div class="txt-project">
+          <h3>김예찬</h3>
+          <dl>
+            <dt>나이</dt>
+            <dd>28</dd>
+            <dt>사는 곳</dt>
+            <dd>전북 전주시</dd>
+            <dt>Tel.</dt>
+            <dd>010-9940-8245</dd>
+            <dt>Github</dt>
+            <dd>https://github.com/wondo8449</dd>
+            <dt>Blog</dt>
+            <dd id="section4"></dd>
+          </dl>
+        </div>
+      </article>
+      <article class="box-project">
+        <div class="slide-container2">
+          <div class="slide-album2">
+            <div class="slide-images2">
+              <img src="src/img/500500.jpg" alt="내 사진" />
+              <img src="src/img/500500.jpg" alt="내 사진" />
+              <img src="src/img/500500.jpg" alt="내 사진" />
+
+            </div>
+            <button class="btn-next2">▶</button>
+            <button class="btn-prev2">◀</button>
+          </div>
+        </div>
+        <div class="txt-project">
+          <h3>신동하</h3>
+          <dl>
+            <dt>나이</dt>
+            <dd>26</dd>
+            <dt>사는 곳</dt>
+            <dd>서울시 송파구</dd>
+            <dt>Tel.</dt>
+            <dd>010-6638-7374</dd>
+            <dt>Github</dt>
+            <dd>https://github.com/DongDongShin/</dd>
+            <dt>Blog</dt>
+            <dd id="section5">https://velog.io/@dongdong_99/posts</dd>
+          </dl>
+        </div>
+      </article>
+      <article class="box-project">
+        <div class="slide-container4">
+          <div class="slide-album4">
+            <div class="slide-images4">
+              <img src="src/img/500500.jpg" alt="내 사진" />
+              <img src="src/img/500500.jpg" alt="내 사진" />
+              <img src="src/img/500500.jpg" alt="내 사진" />
+
+            </div>
+            <button class="btn-next4">▶</button>
+            <button class="btn-prev4">◀</button>
+          </div>
+        </div>
+        <div class="txt-project">
+          <h3>정연주</h3>
+          <dl>
+            <dt>나이</dt>
+            <dd>26</dd>
+            <dt>사는 곳</dt>
+            <dd>서울시 송파구</dd>
+            <dt>Tel.</dt>
+            <dd>010-6638-7374</dd>
+            <dt>Github</dt>
+            <dd>https://github.com/DongDongShin/</dd>
+            <dt>Blog</dt>
+            <dd>https://velog.io/@dongdong_99/posts</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="box-project">
+
+        <div class="card mb-3" style="width:800px;height: 500px; margin-right: 75px; overflow-y: scroll;">
+          <table class="table"  style="text-align:center; border:1px solid #dddddd">
+            <thead id="contents">
+              <tr>
+                <th class="txt-title3"  style="background-color:#ffffff">남긴 응원들📕</th>
+              </tr>
+            </thead>
+            <tbody>
+
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card mb-3" style="width:500px;height: 203px; margin-right: 75px;">
+          <table class="table" style="text-align:center; border:1px solid #dddddd">
+            <thead>
+              <tr>
+                <th class="txt-title3" style="text-align:center; width: 50px; margin-top: 10px;">응원 남기기</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">닉네임</span>
+            <input type="text" id="nickname" class="form-control" placeholder="" aria-label=""
+              aria-describedby="basic-addon1">
+          </div>
+
+          <div class="input-group mb-4">
+            <span class="input-group-text" id="basic-addon1">응원의 글</span>
+            <input type="text" id="content" class="form-control" placeholder="" aria-label=""
+              aria-describedby="basic-addon1">
+          </div>
+
+
+          <button type="button" id="postingbtn" class="btn btn-primary">기록하기📖</button>
+        </div>
+      </article>
+
+    </section>
+    <footer id="footer">
+
+      <a name="contact"></a>
+      <div class="box-footer">
+        <p>© 2024 - FJ(First JavaScript)</p>
+      </div>
+
+
+    </footer>
+
+
+    <button onclick="moveToTop()" class="btn-moveTop"></button>
+    <script src="index.js"></script>
+  </main>
+</body>
+
+</html>
